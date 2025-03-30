@@ -77,7 +77,7 @@ const Home = () => {
         <Achievements/>  
       </section>
       <section className="py-20 px-4">
-        <Gallery/>  
+        {/* <Gallery/>   */}
       </section>
       <section className="py-20 px-4">
         <Contact/>  
