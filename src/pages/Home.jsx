@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import Archer from "../images/uva_heesara_2.jpg";
+import Archer from "../images/uva_heesara_2.JPG";
 import Archer2 from "../images/uva_heesara_1.jpg";
 import Archer3 from "../images/test4.jpg";
 import Archer4 from "../images/uva_heesara_3.jpg"; 
