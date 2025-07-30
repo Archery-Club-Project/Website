@@ -109,7 +109,7 @@ function App() {
             <main>
               <Routes>
                 <Route
-                  path="/Website"
+                  path="/"
                   element={
                     <div className="space-y-0">                      {/* Hero Section - Keep original design */}
                       <section id="Home" className="relative">
