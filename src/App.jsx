@@ -18,11 +18,8 @@ import {
 } from "./components/ArcheryBackgrounds";
 
 // Import all images
-import test3 from "../src/images/img.jpg";
-import test2 from "../src/images/test2.jpg";
 import test4 from "../src/images/test4.jpg";
 import test1Mobile from "../src/images/test1-mobile.jpg";
-import test2Mobile from "../src/images/test2-mobile.jpg";
 import test3Mobile from "../src/images/test3-mobile.jpg";
 import img1 from "../src/AssetsFolder/img1.jpeg";
 import img2 from "../src/AssetsFolder/img2.jpeg";
@@ -43,11 +40,8 @@ function App() {
       // List of all images that need to be preloaded
       const images = [
         // Home page images
-        test3,
-        test2,
         test4,
         test1Mobile,
-        test2Mobile,
         test3Mobile,
         // HomeSecond images
         img1,
