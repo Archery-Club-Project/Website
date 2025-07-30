@@ -142,32 +142,6 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* Newsletter Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-12 pt-8 border-t border-white/10"
-        >
-          <div className="max-w-md">
-            <h4 className="text-lg font-semibold text-white mb-3">Stay Updated</h4>
-            <p className="text-gray-400 text-sm mb-4">
-              Get the latest news about competitions, training sessions, and club updates.
-            </p>
-            <div className="flex">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-2 bg-white/5 border border-white/10 rounded-l-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-              <button className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-r-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 flex items-center">
-                <Mail className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-        </motion.div>
-
         {/* Bottom Bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

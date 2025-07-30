@@ -56,80 +56,81 @@ const Navbar = () => {
     }
   };
 
+
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-black/90 backdrop-blur-lg border-b border-white/10 shadow-2xl' 
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 lg:h-20">
-          {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex items-center space-x-3 cursor-pointer"
-            onClick={() => scrollToSection('#Home')}
-          >
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <Target className="w-6 h-6 text-white" />
-            </div>
-            <div className="hidden sm:block">
-              <h1 className="text-xl font-bold text-white">Archery Club</h1>
-              <p className="text-xs text-gray-400 -mt-1">of Uva</p>
-            </div>
-          </motion.div>
+    <>
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6 }}        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled 
+            ? 'bg-black/90 backdrop-blur-lg border-b border-white/10 shadow-2xl' 
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16 lg:h-20">
+            {/* Logo */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="flex items-center space-x-3 cursor-pointer"
+              onClick={() => scrollToSection('#Home')}
+            >
+              <div className="w-10 h-10 bg-gradient-to-r from-grey-500 to-white-600 rounded-lg flex items-center justify-center">
+                <img src={"logo.png"} alt="Logo" className="w-10 h-10" />
+              </div>
+              <div className="hidden sm:block">
+                <h1 className="text-xl font-bold text-white">Archery Club</h1>
+                <p className="text-xs text-gray-400 -mt-1">of Uva</p>
+              </div>
+            </motion.div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
-            {navItems.map((item, index) => {
-              const IconComponent = item.icon;
-              return (
-                <motion.button
-                  key={item.name}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
-                  onClick={() => scrollToSection(item.href)}
-                  className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 flex items-center space-x-2 group ${
-                    activeSection === item.name
-                      ? 'text-white bg-white/10'
-                      : 'text-gray-300 hover:text-white hover:bg-white/5'
-                  }`}
-                >
-                  <IconComponent className="w-4 h-4" />
-                  <span>{item.name}</span>
-                  {activeSection === item.name && (
-                    <motion.div
-                      layoutId="activeIndicator"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"
-                    />
-                  )}
-                </motion.button>
-              );
-            })}
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-1">
+              {navItems.map((item, index) => {
+                const IconComponent = item.icon;
+                return (
+                  <motion.button
+                    key={item.name}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
+                    onClick={() => scrollToSection(item.href)}
+                    className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 flex items-center space-x-2 group ${
+                      activeSection === item.name
+                        ? 'text-white bg-white/10'
+                        : 'text-gray-300 hover:text-white hover:bg-white/5'
+                    }`}
+                  >
+                    <IconComponent className="w-4 h-4" />
+                    <span>{item.name}</span>
+                    {activeSection === item.name && (
+                      <motion.div
+                        layoutId="activeIndicator"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"
+                      />
+                    )}
+                  </motion.button>
+                );
+              })}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <motion.button
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              onClick={toggleMenu}
+              className="lg:hidden w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white hover:bg-white/20 transition-colors duration-300"
+            >
+              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}            </motion.button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <motion.button
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            onClick={toggleMenu}
-            className="lg:hidden w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white hover:bg-white/20 transition-colors duration-300"
-          >
-            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </motion.button>
         </div>
-      </div>
+      </motion.nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Outside of main nav to avoid transparency inheritance */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -138,7 +139,7 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+              className="lg:hidden fixed inset-0 bg-black/80 z-40"
               onClick={() => setIsOpen(false)}
             />
             
@@ -148,7 +149,7 @@ const Navbar = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: '100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
-              className="lg:hidden fixed top-0 right-0 h-full w-80 max-w-[90vw] bg-gray-900/95 backdrop-blur-xl border-l border-white/10 z-50"
+              className="lg:hidden fixed top-0 right-0 h-full w-80 max-w-[90vw] bg-gray-900 border-l border-white/10 z-50"
             >
               <div className="p-6">
                 {/* Mobile Header */}
@@ -205,7 +206,7 @@ const Navbar = () => {
           </>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </>
   );
 };
 

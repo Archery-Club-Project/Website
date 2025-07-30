@@ -1,109 +1,83 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import './achievements.scss';
+import achievementsData from '../../Json Files/Achivements.json';
 
-// Image imports
-const OlympicQuotaPlace = "/Olympic_quota_place.jpeg";
-const AllIslandChampionship = "/AllIslandChampionship.jpeg";
-const WAAJointTraning = "/WAA_Joint_Traning.jpeg";
-const Olympicmedalist = "/Olympic medalist.jpeg";
+// Professional SVG Icons
+const TrophyIcon = () => (
+  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12 2C13.1 2 14 2.9 14 4V7.5C14 8.3 13.3 9 12.5 9S11 8.3 11 7.5V4C11 2.9 11.9 2 12 2M21 9V7C21 6.4 20.6 6 20 6H17V4C17 2.3 15.7 1 14 1H10C8.3 1 7 2.3 7 4V6H4C3.4 6 3 6.4 3 7V9C3 11.8 5.2 14 8 14H9V16H7C6.4 16 6 16.4 6 17S6.4 18 7 18H17C17.6 18 18 17.6 18 17S17.6 16 17 16H15V14H16C18.8 14 21 11.8 21 9M19 9C19 10.7 17.7 12 16 12H15V7H19V9M9 12C7.3 12 6 10.7 6 9V7H9V12Z"/>
+  </svg>
+);
 
-// Achievements data
-const achievements = [
-  {
-    id: 1,
-    title: "2024 WAA Joint Training",
-    img: WAAJointTraning,
-    description: "Our archers and coach were selected to participate in 2024 WAA Joint Training and Asia Archery Challenge Korea Gyeyang from 24th - 28th August 2024.",
-    year: "2024",
-    category: "International Training",
-    gold: 10,
-    silver: 4,
-    bronze: 3,
-    highlights: [
-      "Selected for prestigious international training program",
-      "Represented Sri Lanka in Korea Gyeyang",
-      "Multiple medal winners across age categories"
-    ],
-    medals: [
-      { category: "U10 Boys", Gold: "Thisula" },
-      { category: "U10 Girls", Silver: "Tenashi", Bronze: "Kushali" },
-      { category: "U12 Boys", Gold: "Senula" },
-      { category: "U12 Girls", Gold: "Amalmi" },
-      { category: "U14 Boys", Gold: "Dinujaya" },
-      { category: "U14 Girls", Gold: "Thenuki" },
-      { category: "U18 Boys", Gold: "Dewmina" },
-      { category: "U18 Girls", Gold: "Nithuli" },
-      { category: "60M Cadet Boys", Gold: "Dewmina", Silver: "Dinujaya", Bronze: "Bihandu" },
-      { category: "60M Cadet Girls", Gold: "Thenuki" },
-      { category: "70M Boys", Silver: "Ravien" },
-      { category: "Over 40", Gold: "Chathuranga", Bronze: "Chamil" }
-    ]
-  },
-  {
-    id: 2,
-    title: "World Cup Quarter Finalist",
-    img: OlympicQuotaPlace,
-    description: "Historic achievement - the highest placement by any Sri Lankan archer in World Cup competition. A proud moment that brings us closer to Olympic dreams.",
-    year: "2023",
-    category: "World Championship",
-    gold: 0,
-    silver: 0,
-    bronze: 1,
-    highlights: [
-      "Highest achievement by any Sri Lankan archer",
-      "Quarter-finalist in Archery World Cup",
-      "Olympic qualification pathway"
-    ],
-    medals: [
-      { category: "Men's Individual Recurve", Bronze: "Ravien Dalpatadu" }
-    ]
-  },
-  {
-    id: 3,
-    title: "All-Island Championship Dominance",
-    img: AllIslandChampionship,
-    description: "Uva Archery Club dominated the 2023 All-Island Championship with 11 medals at Royal International School ground, Kurunegala.",
-    year: "2023",
-    category: "National Championship",
-    gold: 4,
-    silver: 4,
-    bronze: 3,
-    highlights: [
-      "11 total medals won",
-      "Dominated across all age categories",
-      "National championship excellence"
-    ],
-    medals: [
-      { category: "Senior Men Recurve", Gold: "Ravien Dalpatadu" },
-      { category: "Junior Men Recurve", Gold: "Dewmina Senadeera", Silver: "Dinujaya Fernando" },
-      { category: "Cadet Girls Recurve", Gold: "Thenuki Gamage" },
-      { category: "Under 12 Boys", Gold: "Senula Kavinda" },
-      { category: "Under 12 Girls", Silver: "Amalmi Hansika" },
-      { category: "Under 10 Boys", Silver: "Thisula Mihiran", Bronze: "Sahan Viraj" },
-      { category: "Under 10 Girls", Silver: "Tenashi Fernando", Bronze: "Kushali Sandareka" },
-      { category: "Compound Senior", Bronze: "Chathuranga Silva" }
-    ]
-  },
-  {
-    id: 4,
-    title: "Youth Olympic Excellence",
-    img: Olympicmedalist,
-    description: "Ravien Dalpatadu ranked 6th at Youth Olympic Games 2018 in Argentina — Sri Lanka's highest youth archery placement.",
-    year: "2018",
-    category: "Youth Olympics",
-    gold: 0,
-    silver: 0,
-    bronze: 0,
-    highlights: [
-      "6th place at Youth Olympic Games",
-      "Argentina 2018 representation",
-      "Youngest Sri Lankan Olympic archer"
-    ],
-    medals: [
-      { category: "Youth Olympic Games 2018", result: "6th Place - Ravien Dalpatadu" }
-    ]
-  }
-];
+const TargetIcon = () => (
+  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z"/>
+  </svg>
+);
+
+const WorldIcon = () => (
+  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16C9,17.1 9.9,18 11,18V19.93M17.9,17.39C17.64,16.58 16.9,16 16,16H15V13C15,12.45 14.55,12 14,12H8V10H10C10.55,10 11,9.55 11,9V7H13C14.1,7 15,6.1 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39Z"/>
+  </svg>
+);
+
+const AwardIcon = () => (
+  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12,15.39L8.24,17.66L9.23,13.38L5.91,10.5L10.29,10.13L12,6.09L13.71,10.13L18.09,10.5L14.77,13.38L15.76,17.66M22,9.24L14.81,8.63L12,2L9.19,8.63L2,9.24L7.45,13.97L5.82,21L12,17.27L18.18,21L16.54,13.97L22,9.24Z"/>
+  </svg>
+);
+
+const ChevronDownIcon = () => (
+  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+  </svg>
+);
+
+const EyeIcon = () => (
+  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/>
+  </svg>
+);
+
+const CheckIcon = () => (
+  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" fill="#10B981"/>
+  </svg>
+);
+
+const CalendarIcon = () => (
+  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19C3,20.1 3.89,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.9 20.1,3 19,3M19,19H5V8H19V19Z"/>
+  </svg>
+);
+
+// Professional Medal SVG Icons
+const GoldMedalIcon = () => (
+  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2M12 6.5L11.5 9.5L9 9.5L11 11L10.5 13.5L12 12L13.5 13.5L13 11L15 9.5L12.5 9.5L12 6.5Z" fill="#FFD700"/>
+  </svg>
+);
+
+const SilverMedalIcon = () => (
+  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2M12 6.5L11.5 9.5L9 9.5L11 11L10.5 13.5L12 12L13.5 13.5L13 11L15 9.5L12.5 9.5L12 6.5Z" fill="#C0C0C0"/>
+  </svg>
+);
+
+const BronzeMedalIcon = () => (
+  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2M12 6.5L11.5 9.5L9 9.5L11 11L10.5 13.5L12 12L13.5 13.5L13 11L15 9.5L12.5 9.5L12 6.5Z" fill="#CD7F32"/>
+  </svg>
+);
+
+const ResultIcon = () => (
+  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z" fill="#4F9EF8"/>
+  </svg>
+);
+// get data from json files
+const achievements = achievementsData;
 
 const Achievement = () => {
   const [expandedCard, setExpandedCard] = useState(null);
@@ -111,7 +85,6 @@ const Achievement = () => {
   const toggleCard = (id) => {
     setExpandedCard(expandedCard === id ? null : id);
   };
-
   const getCategoryColor = (category) => {
     switch (category) {
       case 'International Training': return 'from-blue-500 to-cyan-500';
@@ -122,8 +95,17 @@ const Achievement = () => {
     }
   };
 
+  const getCategoryIcon = (category) => {
+    switch (category) {
+      case 'International Training': return <TargetIcon />;
+      case 'World Championship': return <WorldIcon />;
+      case 'National Championship': return <TrophyIcon />;
+      case 'Youth Olympics': return <AwardIcon />;
+      default: return <TrophyIcon />;
+    }
+  };
   return (
-    <div className="container mx-auto px-4 py-16 max-w-7xl">
+    <div className="achievements container mx-auto px-4 py-16 max-w-7xl">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -131,8 +113,7 @@ const Achievement = () => {
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
         className="text-center mb-16"
-      >
-        <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent mb-6">
+      >        <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent mb-6 animated-gradient-text">
           Our Achievements
         </h1>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
@@ -149,7 +130,7 @@ const Achievement = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: index * 0.1 }}
             viewport={{ once: true }}
-            className="bg-white/5 backdrop-blur-lg rounded-3xl border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-500"
+            className="achievement-card bg-white/5 backdrop-blur-lg rounded-3xl border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-500"
           >
             <div className="lg:flex">
               {/* Image Section */}
@@ -160,16 +141,16 @@ const Achievement = () => {
                     alt={achievement.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  
-                  {/* Category Badge */}
-                  <div className={`absolute top-4 left-4 px-4 py-2 rounded-full bg-gradient-to-r ${getCategoryColor(achievement.category)} text-white text-sm font-medium`}>
-                    {achievement.category}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />                  {/* Category Badge */}
+                  <div className={`absolute top-4 left-4 px-4 py-2 rounded-full bg-gradient-to-r ${getCategoryColor(achievement.category)} text-white text-sm font-medium flex items-center space-x-2`}>
+                    <span className="category-icon text-white">{getCategoryIcon(achievement.category)}</span>
+                    <span>{achievement.category}</span>
                   </div>
                   
                   {/* Year Badge */}
-                  <div className="absolute top-4 right-4 px-3 py-1 bg-black/50 backdrop-blur-sm rounded-full text-white text-sm flex items-center">
-                    📅 {achievement.year}
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-black/50 backdrop-blur-sm rounded-full text-white text-sm flex items-center space-x-1">
+                    <CalendarIcon />
+                    <span>{achievement.year}</span>
                   </div>
                 </div>
               </div>
@@ -181,52 +162,60 @@ const Achievement = () => {
                     <h2 className="text-2xl lg:text-3xl font-bold text-white mb-3">{achievement.title}</h2>
                     <p className="text-gray-300 leading-relaxed mb-4">{achievement.description}</p>
                   </div>
-                </div>
-
-                {/* Medal Summary */}
-                <div className="flex items-center space-x-6 mb-6">
-                  {achievement.gold > 0 && (
-                    <div className="flex items-center space-x-2">
-                      <span className="text-yellow-400 text-2xl">🏆</span>
-                      <span className="text-white font-bold">{achievement.gold}</span>
+                </div>                {/* Medal Summary */}
+                <div className="flex flex-wrap gap-4 items-center mb-6">                  {achievement.gold > 0 && (
+                    <div className="flex items-center space-x-2 bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 px-3 py-2 rounded-lg border border-yellow-400/30">
+                      <span className="medal-icon"><GoldMedalIcon /></span>
+                      <span className="text-white font-bold text-lg">{achievement.gold}</span>
+                      <span className="text-yellow-400 text-sm font-medium">Gold</span>
                     </div>
                   )}
                   {achievement.silver > 0 && (
-                    <div className="flex items-center space-x-2">
-                      <span className="text-gray-300 text-2xl">🥈</span>
-                      <span className="text-white font-bold">{achievement.silver}</span>
+                    <div className="flex items-center space-x-2 bg-gradient-to-r from-gray-300/20 to-gray-500/20 px-3 py-2 rounded-lg border border-gray-300/30">
+                      <span className="medal-icon"><SilverMedalIcon /></span>
+                      <span className="text-white font-bold text-lg">{achievement.silver}</span>
+                      <span className="text-gray-300 text-sm font-medium">Silver</span>
                     </div>
                   )}
                   {achievement.bronze > 0 && (
-                    <div className="flex items-center space-x-2">
-                      <span className="text-orange-400 text-2xl">🥉</span>
-                      <span className="text-white font-bold">{achievement.bronze}</span>
+                    <div className="flex items-center space-x-2 bg-gradient-to-r from-orange-400/20 to-orange-600/20 px-3 py-2 rounded-lg border border-orange-400/30">
+                      <span className="medal-icon"><BronzeMedalIcon /></span>
+                      <span className="text-white font-bold text-lg">{achievement.bronze}</span>
+                      <span className="text-orange-400 text-sm font-medium">Bronze</span>
                     </div>
                   )}
-                </div>
-
-                {/* Highlights */}
-                <div className="space-y-2 mb-6">
-                  {achievement.highlights.map((highlight) => (
-                    <div key={highlight} className="flex items-start space-x-3">
-                      <div className="w-2 h-2 rounded-full bg-gradient-to-r from-yellow-400 to-orange-400 mt-2.5 flex-shrink-0" />
-                      <span className="text-gray-300 text-sm">{highlight}</span>
+                </div>                {/* Highlights */}
+                <div className="space-y-3 mb-6">
+                  {achievement.highlights.map((highlight, index) => (
+                    <div key={`${achievement.id}-highlight-${highlight.slice(0, 20)}-${index}`} className="flex items-start space-x-3 p-2 bg-white/5 rounded-lg border-l-4 border-gradient-to-b border-l-green-400">
+                      <div className="mt-0.5">
+                        <CheckIcon />
+                      </div>
+                      <span className="text-gray-200 text-sm leading-relaxed">{highlight}</span>
                     </div>
                   ))}
-                </div>
-
-                {/* Expand Button */}
-                <button
+                </div>                {/* View More Button */}
+                <motion.button
                   onClick={() => toggleCard(achievement.id)}
-                  className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="achievement-button group relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-medium text-white transition duration-300 ease-out bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
-                  <span className="font-medium">
-                    {expandedCard === achievement.id ? 'Show Less' : 'View Details'}
+                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-600 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                  <span className="relative flex items-center space-x-2">
+                    <EyeIcon />
+                    <span className="font-semibold">
+                      {expandedCard === achievement.id ? 'Show Less' : 'View More Details'}
+                    </span>
+                    <motion.span 
+                      animate={{ rotate: expandedCard === achievement.id ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="ml-1"
+                    >
+                      <ChevronDownIcon />
+                    </motion.span>
                   </span>
-                  <span className={`transition-transform duration-300 ${expandedCard === achievement.id ? 'rotate-180' : ''}`}>
-                    ⬇️
-                  </span>
-                </button>
+                </motion.button>
               </div>
             </div>
 
@@ -239,38 +228,40 @@ const Achievement = () => {
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.3 }}
                   className="border-t border-white/10 bg-white/5"
-                >
-                  <div className="p-8">
-                    <h3 className="text-xl font-bold text-white mb-6 flex items-center">
-                      👥 Medal Winners
+                >                  <div className="p-8">
+                    <h3 className="text-xl font-bold text-white mb-6 flex items-center space-x-2">
+                      <TrophyIcon />
+                      <span>Medal Winners</span>
                     </h3>
                     <div className="grid md:grid-cols-2 gap-4">
                       {achievement.medals.map((medal, medalIndex) => (
-                        <div key={medalIndex} className="bg-white/5 rounded-xl p-4 border border-white/10">
-                          <div className="font-medium text-white mb-2">{medal.category}</div>
-                          <div className="space-y-1">
-                            {medal.Gold && (
-                              <div className="flex items-center space-x-2">
-                                <span className="text-yellow-400">🏆</span>
-                                <span className="text-gray-300 text-sm">{medal.Gold}</span>
+                        <div key={`${achievement.id}-medal-${medalIndex}-${medal.category}`} className="bg-white/5 rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-colors duration-200">
+                          <div className="font-medium text-white mb-3 flex items-center space-x-2">
+                            <TargetIcon />
+                            <span>{medal.category}</span>
+                          </div>
+                          <div className="space-y-2">                            {medal.Gold && (
+                              <div className="flex items-center space-x-3 p-2 bg-gradient-to-r from-yellow-400/10 to-yellow-600/10 rounded-lg">
+                                <span className="medal-icon"><GoldMedalIcon /></span>
+                                <span className="text-gray-200 text-sm font-medium">{medal.Gold}</span>
                               </div>
                             )}
                             {medal.Silver && (
-                              <div className="flex items-center space-x-2">
-                                <span className="text-gray-300">🥈</span>
-                                <span className="text-gray-300 text-sm">{medal.Silver}</span>
+                              <div className="flex items-center space-x-3 p-2 bg-gradient-to-r from-gray-300/10 to-gray-500/10 rounded-lg">
+                                <span className="medal-icon"><SilverMedalIcon /></span>
+                                <span className="text-gray-200 text-sm font-medium">{medal.Silver}</span>
                               </div>
                             )}
                             {medal.Bronze && (
-                              <div className="flex items-center space-x-2">
-                                <span className="text-orange-400">🥉</span>
-                                <span className="text-gray-300 text-sm">{medal.Bronze}</span>
+                              <div className="flex items-center space-x-3 p-2 bg-gradient-to-r from-orange-400/10 to-orange-600/10 rounded-lg">
+                                <span className="medal-icon"><BronzeMedalIcon /></span>
+                                <span className="text-gray-200 text-sm font-medium">{medal.Bronze}</span>
                               </div>
                             )}
                             {medal.result && (
-                              <div className="flex items-center space-x-2">
-                                <span className="text-blue-400">🎯</span>
-                                <span className="text-gray-300 text-sm">{medal.result}</span>
+                              <div className="flex items-center space-x-3 p-2 bg-gradient-to-r from-blue-400/10 to-blue-600/10 rounded-lg">
+                                <span className="medal-icon"><ResultIcon /></span>
+                                <span className="text-gray-200 text-sm font-medium">{medal.result}</span>
                               </div>
                             )}
                           </div>

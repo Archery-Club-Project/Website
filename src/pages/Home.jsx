@@ -1,11 +1,14 @@
 import { motion, AnimatePresence } from "framer-motion";
-import Archer from "../images/test3.jpg";
-import Archer2 from "../images/test2.jpg";
+import Archer from "../images/uva_heesara_2.JPG";
+import Archer2 from "../images/uva_heesara_1.JPG";
 import Archer3 from "../images/test4.jpg";
+import Archer4 from "../images/uva_heesara_3.JPG"; 
+import Archer5 from "../images/uvahessara-group.JPG"; 
+
 // Import portrait images for mobile
 import ArcherMobile from "../images/test1-mobile.jpg"; // You'll need to add these mobile versions
-import Archer2Mobile from "../images/test2-mobile.jpg"; // of your images that are in portrait
-import Archer3Mobile from "../images/test3-mobile.jpg"; // orientation (9:16 ratio ideally)
+
+import Archer3Mobile from "../images/test3-mobile.jpg"; // orientation (9:16 ratio ideally) // Add more as needed
 import { useState, useEffect } from "react";
 
 const Home = () => {
@@ -15,9 +18,11 @@ const Home = () => {
 
   // Desktop and Mobile image pairs
   const imageSet = [
-    { desktop: Archer, mobile: ArcherMobile },
-    { desktop: Archer2, mobile: Archer2Mobile },
+    { desktop: Archer, mobile: Archer5 },
+    { desktop: Archer2, mobile: Archer2 },
     { desktop: Archer3, mobile: Archer3Mobile },
+    { desktop: Archer4, mobile: Archer4 },
+    { desktop: Archer5, mobile: ArcherMobile },
   ];
 
   // Start autoplay
