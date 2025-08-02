@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Membership from "./pages/Membership";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Footer from "./components/Footer";
@@ -21,15 +22,6 @@ import {
 import test4 from "../src/images/test4.jpg";
 import test1Mobile from "../src/images/test1-mobile.jpg";
 import test3Mobile from "../src/images/test3-mobile.jpg";
-import img1 from "../src/AssetsFolder/img1.jpeg";
-import img2 from "../src/AssetsFolder/img2.jpeg";
-import img3 from "../src/AssetsFolder/img3.jpeg";
-import field from "../src/AssetsFolder/field.png";
-import archer from "../src/AssetsFolder/archer.png";
-import arrow from "../src/AssetsFolder/arrow.png";
-import target from "../src/AssetsFolder/target.png";
-import stars from "../src/AssetsFolder/stars.png";
-import logo from "../src/AssetsFolder/logo.jpeg";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -42,19 +34,7 @@ function App() {
         // Home page images
         test4,
         test1Mobile,
-        test3Mobile,
-        // HomeSecond images
-        img1,
-        img2,
-        img3,
-        // Parallax images
-        field,
-        archer,
-        arrow,
-        target,
-        stars,
-        // Other images
-        logo,
+        test3Mobile
       ];
 
       let loadedCount = 0;
@@ -144,6 +124,7 @@ function App() {
                   }
                 />
                 <Route path="/newgallery" element={<NewGallery />} />
+                <Route path="/membership" element={<Membership />} />
               </Routes>            </main>
             <footer className="relative">
               <DynamicBackground section="footer" />

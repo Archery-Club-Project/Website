@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FacebookIcon } from 'lucide-react';
 
 const Contact = () => {
   const contactInfo = [
@@ -12,20 +13,14 @@ const Contact = () => {
     {
       icon: '📞',
       title: 'Call Us',
-      details: ['+94 123 456 789', '+94 987 654 321'],
+      details: ['+94 71 811 8969', '+94 57 222 2336'],
       action: 'Make a Call'
     },
     {
       icon: '✉️',
       title: 'Email Us',
-      details: ['uvaarchery@gmail.com', 'info@uvaarchery.lk'],
+      details: ['uvaarchery@gmail.com'],
       action: 'Send Email'
-    },
-    {
-      icon: '⏰',
-      title: 'Training Hours',
-      details: ['Mon-Fri: 4:00 PM - 7:00 PM', 'Sat-Sun: 8:00 AM - 12:00 PM'],
-      action: 'View Schedule'
     }
   ];
 
@@ -107,10 +102,7 @@ const Contact = () => {
             </p>
             <div className="flex justify-center space-x-6">
               {[
-                { icon: '📘', name: 'Facebook', color: 'hover:text-blue-400' },
-                { icon: '📷', name: 'Instagram', color: 'hover:text-pink-400' },
-                { icon: '🐦', name: 'Twitter', color: 'hover:text-blue-300' },
-                { icon: '📺', name: 'YouTube', color: 'hover:text-red-400' }
+                { icon: <FacebookIcon />, name: 'Facebook', color: 'hover:text-blue-400' }
               ].map((social) => (
                 <button
                   key={social.name}
@@ -135,16 +127,30 @@ const Contact = () => {
       >
         <div className="bg-white/5 backdrop-blur-lg rounded-3xl p-8 border border-white/10">
           <h2 className="text-2xl font-bold text-white mb-6 text-center">Find Us Here</h2>
-          <div className="relative bg-gray-800 rounded-2xl overflow-hidden h-96 flex items-center justify-center">
-            <div className="text-center">
-              <div className="text-6xl mb-4">🗺️</div>
-              <h3 className="text-xl font-semibold text-white mb-2">Interactive Map Coming Soon</h3>
-              <p className="text-gray-400 mb-4">
+          <div className="relative bg-gray-800 rounded-2xl overflow-hidden" style={{ aspectRatio: '16/9', minHeight: '24rem' }}>
+            <iframe
+              title="ACU Club Location"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1055.3207996552533!2d81.00222321018184!3d6.838597331933239!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1754066437875!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0, width: '100%', height: '100%' }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0 w-full h-full"
+            ></iframe>
+            <div className="absolute z-10 bottom-6 left-1/2 -translate-x-1/2 text-center w-full flex flex-col items-center">
+              <p className="text-gray-200 mb-4 bg-gray-900/70 px-4 py-2 rounded-xl inline-block max-w-xs">
                 Rotoruwa, Kabillawela North, Bandarawela, Sri Lanka
               </p>
-              <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl transition-colors duration-300">
+              <a
+                href="https://maps.app.goo.gl/UWg88KDfDTmPPRXe7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl transition-colors duration-300 shadow-lg"
+              >
                 Open in Google Maps
-              </button>
+              </a>
             </div>
           </div>
         </div>

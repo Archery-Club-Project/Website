@@ -18,30 +18,15 @@ const Footer = () => {
       ]
     },
     {
-      title: "Programs",
-      links: [
-        { name: "Beginner Training", href: "#" },
-        { name: "Advanced Coaching", href: "#" },
-        { name: "Youth Development", href: "#" },
-        { name: "Competitive Training", href: "#" }
-      ]
-    },
-    {
       title: "Resources",
       links: [
-        { name: "Training Schedule", href: "#" },
-        { name: "Equipment Guide", href: "#" },
-        { name: "Safety Guidelines", href: "#" },
-        { name: "Membership", href: "#" }
+        { name: "Membership", href: "/membership" }
       ]
     }
   ];
 
   const socialLinks = [
     { icon: Facebook, href: "#", label: "Facebook", color: "hover:text-blue-400" },
-    { icon: Instagram, href: "#", label: "Instagram", color: "hover:text-pink-400" },
-    { icon: Twitter, href: "#", label: "Twitter", color: "hover:text-blue-300" },
-    { icon: Youtube, href: "#", label: "YouTube", color: "hover:text-red-400" }
   ];
   return (
     <footer className="bg-gradient-to-t from-black via-gray-900 to-gray-800 border-t border-white/10">      
@@ -88,7 +73,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3 text-gray-300">
                 <Phone className="w-4 h-4 text-blue-400 flex-shrink-0" />
-                <span className="text-sm">+94 123 456 789</span>
+                <span className="text-sm">+94 71 811 8969</span>
               </div>
             </motion.div>
 
@@ -152,7 +137,7 @@ const Footer = () => {
         >
           <div className="text-center md:text-left">
             <p className="text-gray-400 text-sm">
-              © 2024 Archery Club of Uva. All rights reserved.
+              © 2025 Archery Club of Uva. All rights reserved.
             </p>
             <p className="text-gray-500 text-xs mt-1">
               Designed with precision and passion for archery excellence.
