@@ -124,7 +124,7 @@ const Navbar = () => {
               onClick={() => handleNavClick({ name: 'Home', href: '#Home' })}
             >
               <div className="w-10 h-10 bg-gradient-to-r from-grey-500 to-white-600 rounded-lg flex items-center justify-center">
-                <img src={"logo.png"} alt="Logo" className="w-10 h-10" />
+                <img src={"logo.png"} alt="Archery Club of Uva logo" className="w-10 h-10" loading="eager" fetchpriority="high" />
               </div>
               <div className="hidden sm:block">
                 <h1 className="text-xl font-bold text-white">Archery Club</h1>

@@ -3,7 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://archery-club-project.github.io/Website",
+  "homepage": "https://dev.uvaarchery.lk/",
+  "description": "Archery Club of Uva (Uva Archery) – promoting Sri Lankan archery through training, competitions and youth development.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
