@@ -127,13 +127,13 @@ const Contact = () => {
       >
         <div className="bg-white/5 backdrop-blur-lg rounded-3xl p-8 border border-white/10">
           <h2 className="text-2xl font-bold text-white mb-6 text-center">Find Us Here</h2>
-          <div className="relative bg-gray-800 rounded-2xl overflow-hidden" style={{ aspectRatio: '16/9', minHeight: '24rem' }}>
+          <div className="bg-gray-800 rounded-2xl overflow-hidden" style={{ minHeight: '24rem' }}>
             <iframe
               title="ACU Club Location"
               src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1055.3207996552533!2d81.00222321018184!3d6.838597331933239!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1754066437875!5m2!1sen!2sin"
               width="100%"
               height="100%"
-              style={{ border: 0, width: '100%', height: '100%' }}
+              style={{ border: 0 }}
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
