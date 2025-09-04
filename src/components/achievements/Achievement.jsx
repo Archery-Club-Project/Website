@@ -202,7 +202,7 @@ const Achievement = () => {
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       // Fallback image if the Google Drive image fails to load
-                      e.target.src = 'https://placehold.co/800?text=Hello+World&font=roboto';
+                      e.target.src = 'https://placehold.co/800?text=Uva+Archery&font=roboto';
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />                  {/* Category Badge */}
