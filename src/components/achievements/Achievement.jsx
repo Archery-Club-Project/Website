@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './achievements.scss';
-import achievementsData from '../../Json Files/Achivements.json';
+import { useFetchAchievementData } from '../../hooks/useFetchAchievementData.js';
 
 // Professional SVG Icons
 const TrophyIcon = () => (
@@ -76,11 +76,35 @@ const ResultIcon = () => (
     <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z" fill="#4F9EF8"/>
   </svg>
 );
-// get data from json files
-const achievements = achievementsData;
+
+// Helper function to convert Google Drive share URL to direct thumbnail URL
+const getGoogleDriveImageUrl = (url) => {
+  if (!url) return null;
+   
+  // If it's already a direct URL, return as is
+  if (url.includes('drive.google.com/thumbnail') || url.includes('drive.google.com/uc')) {
+    return url;
+  }
+  
+  // Extract file ID from Google Drive share URL
+  const fileIdMatch = url.match(/\/d\/([a-zA-Z0-9-_]+)/);
+  if (fileIdMatch) {
+    const fileId = fileIdMatch[1];
+    return `https://drive.google.com/thumbnail?id=${fileId}&sz=w800`;
+  }
+  
+  // If no match found, return original URL
+  return url;
+};
 
 const Achievement = () => {
   const [expandedCard, setExpandedCard] = useState(null);
+  
+  // Get data from API endpoint - moved inside component
+  const achievementsData = useFetchAchievementData();
+  
+  // Destructure the hook return values
+  const { data: achievements, loading, error, refetch } = achievementsData;
 
   const toggleCard = (id) => {
     setExpandedCard(expandedCard === id ? null : id);
@@ -104,6 +128,42 @@ const Achievement = () => {
       default: return <TrophyIcon />;
     }
   };
+  
+  // Loading state
+  if (loading) {
+    return (
+      <div className="achievements container mx-auto px-4 py-16 max-w-7xl">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-400"></div>
+          <p className="text-white mt-4">Loading achievements...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="achievements container mx-auto px-4 py-16 max-w-7xl">
+        <div className="text-center">
+          <div className="text-red-400 mb-4">
+            <svg className="w-16 h-16 mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+            </svg>
+          </div>
+          <h2 className="text-2xl font-bold text-white mb-4">Failed to Load Achievements</h2>
+          <p className="text-gray-300 mb-6">{error}</p>
+          <button
+            onClick={refetch}
+            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="achievements container mx-auto px-4 py-16 max-w-7xl">
       {/* Header */}
@@ -123,7 +183,7 @@ const Achievement = () => {
 
       {/* Achievement Cards */}
       <div className="space-y-8">
-        {achievements.map((achievement, index) => (
+        {achievements && achievements.map((achievement, index) => (
           <motion.div
             key={achievement.id}
             initial={{ opacity: 0, y: 50 }}
@@ -137,9 +197,13 @@ const Achievement = () => {
               <div className="lg:w-2/5">
                 <div className="relative h-64 lg:h-full overflow-hidden">
                   <img
-                    src={achievement.img}
+                    src={getGoogleDriveImageUrl(achievement.img)}
                     alt={achievement.title}
                     className="w-full h-full object-cover"
+                    onError={(e) => {
+                      // Fallback image if the Google Drive image fails to load
+                      e.target.src = 'https://placehold.co/800?text=Hello+World&font=roboto';
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />                  {/* Category Badge */}
                   <div className={`absolute top-4 left-4 px-4 py-2 rounded-full bg-gradient-to-r ${getCategoryColor(achievement.category)} text-white text-sm font-medium flex items-center space-x-2`}>

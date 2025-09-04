@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 
+// Import environment debugging utility (only runs in development)
+import './utils/env-debug.js'
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App/>
