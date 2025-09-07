@@ -10,12 +10,12 @@ import Loader from "./components/loader/loader";
 import { useState, useEffect } from "react";
 import Achievement from "./components/achievements/Achievement";
 import DynamicBackground from "./components/DynamicBackground";
-import { 
-  HeroBackground, 
-  AboutBackground, 
-  AchievementsBackground, 
-  GalleryBackground, 
-  ContactBackground 
+import {
+  HeroBackground,
+  AboutBackground,
+  AchievementsBackground,
+  GalleryBackground,
+  ContactBackground,
 } from "./components/ArcheryBackgrounds";
 
 // Import all images
@@ -34,7 +34,7 @@ function App() {
         // Home page images
         test4,
         test1Mobile,
-        test3Mobile
+        test3Mobile,
       ];
 
       let loadedCount = 0;
@@ -56,7 +56,7 @@ function App() {
       try {
         await Promise.all(images.map(loadImage));
         // Add a small delay to ensure smooth transition
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await new Promise((resolve) => setTimeout(resolve, 500));
         setIsLoading(false);
       } catch (error) {
         console.error("Error loading images:", error);
@@ -66,7 +66,8 @@ function App() {
     };
 
     preloadImages();
-  }, []);  return (
+  }, []);
+  return (
     <Router>
       <div className="min-h-screen flex flex-col relative z-10">
         {isLoading ? (
@@ -76,14 +77,15 @@ function App() {
               <p className="text-lg mt-4">Loading amazing shots...</p>
               <p className="text-sm text-gray-400 mt-2">Please wait a moment</p>
               <div className="w-48 h-2 bg-gray-700 rounded-full mt-4 overflow-hidden">
-                <div 
+                <div
                   className="h-full bg-accent transition-all duration-300 ease-out"
                   style={{ width: `${loadingProgress}%` }}
                 />
               </div>
               <p className="text-sm text-gray-400 mt-2">{loadingProgress}%</p>
             </div>
-          </div>        ) : (
+          </div>
+        ) : (
           <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black">
             <Navbar />
             <main>
@@ -91,32 +93,42 @@ function App() {
                 <Route
                   path="/"
                   element={
-                    <div className="space-y-0">                      {/* Hero Section - Keep original design */}
+                    <div className="space-y-0">
+                      {" "}
+                      {/* Hero Section - Keep original design */}
                       <section id="Home" className="relative">
                         <HeroBackground />
                         <Home />
                       </section>
-                      
                       {/* Modern About Section */}
-                      <section id="About" className="bg-gradient-to-b from-gray-900 to-slate-800 relative">
+                      <section
+                        id="About"
+                        className="bg-gradient-to-b from-gray-900 to-slate-800 relative"
+                      >
                         <AboutBackground />
                         <About />
                       </section>
-                      
                       {/* Redesigned Achievements Section */}
-                      <section id="Achievements" className="bg-gradient-to-b from-slate-800 to-gray-900 relative">
+                      <section
+                        id="Achievements"
+                        className="bg-gradient-to-b from-slate-800 to-gray-900 relative"
+                      >
                         <AchievementsBackground />
                         <Achievement />
                       </section>
-                      
                       {/* Contemporary Gallery Section */}
-                      <section id="Gallery" className="bg-gradient-to-b from-gray-900 to-slate-800 relative">
+                      <section
+                        id="Gallery"
+                        className="bg-gradient-to-b from-gray-900 to-slate-800 relative"
+                      >
                         <GalleryBackground />
                         <NewGallery />
                       </section>
-                      
                       {/* Modern Contact Section */}
-                      <section id="Contact" className="bg-gradient-to-b from-slate-800 to-black relative">
+                      <section
+                        id="Contact"
+                        className="bg-gradient-to-b from-slate-800 to-black relative"
+                      >
                         <ContactBackground />
                         <Contact />
                       </section>
@@ -125,7 +137,8 @@ function App() {
                 />
                 <Route path="/newgallery" element={<NewGallery />} />
                 <Route path="/membership" element={<Membership />} />
-              </Routes>            </main>
+              </Routes>{" "}
+            </main>
             <footer className="relative">
               <DynamicBackground section="footer" />
               <Footer />
