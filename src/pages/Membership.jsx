@@ -1,8 +1,14 @@
 import React from 'react';
+import SEO from '../components/SEO';
 
 const Membership = () => {
   return (
     <div className="container mx-auto px-4 py-16 max-w-3xl">
+      <SEO 
+        title="Membership" 
+        description="Join the Archery Club of Uva. Learn about membership requirements, benefits, and how to apply."
+        url="/membership"
+      />
       <h1 className="text-4xl font-bold text-center mb-8 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Membership</h1>
       <div className="bg-white/5 backdrop-blur-lg rounded-3xl p-8 border border-white/10">
         <h2 className="text-2xl font-semibold text-white mb-4">How to Become a Member</h2>

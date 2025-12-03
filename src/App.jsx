@@ -17,6 +17,7 @@ import {
   GalleryBackground,
   ContactBackground,
 } from "./components/ArcheryBackgrounds";
+import SEO from "./components/SEO";
 
 // Import all images
 import test4 from "../src/images/test4.jpg";
@@ -97,6 +98,7 @@ function App() {
                       {" "}
                       {/* Hero Section - Keep original design */}
                       <section id="Home" className="relative">
+                        <SEO />
                         <HeroBackground />
                         <Home />
                       </section>

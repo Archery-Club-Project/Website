@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dev.uvaarchery.lk/sitemap.xml
+Sitemap: https://www.uvaarchery.lk/sitemap.xml

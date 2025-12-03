@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react";
+import SEO from "../components/SEO";
 
 const NewGallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -129,6 +130,11 @@ const NewGallery = () => {
 
   return (
     <div className="container mx-auto px-4 py-16 max-w-7xl">
+      <SEO 
+        title="Gallery" 
+        description="Explore our gallery of archery events, competitions, and community moments."
+        url="/newgallery"
+      />
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
