@@ -71,7 +71,7 @@ function App() {
     <Router>
       <div className="min-h-screen flex flex-col relative z-10">
         {isLoading ? (
-          <div className="fixed inset-0 flex items-center justify-center bg-black z-50">
+          <div className="fixed inset-0 flex items-center justify-center bg-black z-50" id="preloader">
             <div className="text-white text-center flex items-center justify-center flex-col">
               <Loader />
               <p className="text-lg mt-4">Loading amazing shots...</p>
