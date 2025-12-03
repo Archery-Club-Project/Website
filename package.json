@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://dev.uvaarchery.lk/",
+  "homepage": "https://www.uvaarchery.lk/",
   "description": "Archery Club of Uva (Uva Archery) – promoting Sri Lankan archery through training, competitions and youth development.",
   "scripts": {
     "dev": "vite",
