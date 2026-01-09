@@ -4,8 +4,8 @@ import { Target, Users, Award, TrendingUp, Calendar, MapPin } from 'lucide-react
 
 const About = () => {
   const stats = [
-    { number: "14", label: "Years of Excellence", icon: Calendar },
-    { number: "200+", label: "Active Members", icon: Users },
+    { number: "26", label: "Years of Excellence", icon: Calendar },
+    { number: "50+", label: "Active Members", icon: Users },
     { number: "50+", label: "Championships Won", icon: Award },
     { number: "95%", label: "Success Rate", icon: TrendingUp }
   ];
@@ -51,7 +51,7 @@ const About = () => {
           About Our Club
         </h1>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Since 2010, we've been nurturing champions and building a community where precision meets passion.
+          Since 2000, we've been nurturing champions and building a community where precision meets passion.
         </p>
       </motion.div>      {/* Stats Section */}
       <motion.div
@@ -85,7 +85,7 @@ const About = () => {
           <h2 className="text-3xl font-bold text-white mb-6">Our Story</h2>
           <div className="space-y-4 text-gray-300 leading-relaxed">
             <p>
-              Founded in 2010, the Archery Club of Uva began as a small group of passionate individuals 
+              Founded in 1999, the Archery Club of Uva began as a small group of passionate individuals 
               who shared a common dream: to elevate archery as a sport of precision and discipline in Sri Lanka.
             </p>
             <p>

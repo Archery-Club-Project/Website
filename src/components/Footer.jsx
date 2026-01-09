@@ -1,10 +1,20 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Youtube, Target, ArrowUp } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Instagram,
+  Twitter,
+  Youtube,
+  Target,
+  ArrowUp,
+} from "lucide-react";
 
 const Footer = () => {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const footerLinks = [
@@ -14,37 +24,25 @@ const Footer = () => {
         { name: "About Us", href: "#About" },
         { name: "Our Achievements", href: "#Achievements" },
         { name: "Gallery", href: "#Gallery" },
-        { name: "Contact Us", href: "#Contact" }
-      ]
-    },
-    {
-      title: "Programs",
-      links: [
-        { name: "Beginner Training", href: "#" },
-        { name: "Advanced Coaching", href: "#" },
-        { name: "Youth Development", href: "#" },
-        { name: "Competitive Training", href: "#" }
-      ]
+        { name: "Contact Us", href: "#Contact" },
+      ],
     },
     {
       title: "Resources",
-      links: [
-        { name: "Training Schedule", href: "#" },
-        { name: "Equipment Guide", href: "#" },
-        { name: "Safety Guidelines", href: "#" },
-        { name: "Membership", href: "#" }
-      ]
-    }
+      links: [{ name: "Membership", href: "/membership" }],
+    },
   ];
 
   const socialLinks = [
-    { icon: Facebook, href: "#", label: "Facebook", color: "hover:text-blue-400" },
-    { icon: Instagram, href: "#", label: "Instagram", color: "hover:text-pink-400" },
-    { icon: Twitter, href: "#", label: "Twitter", color: "hover:text-blue-300" },
-    { icon: Youtube, href: "#", label: "YouTube", color: "hover:text-red-400" }
+    {
+      icon: Facebook,
+      href: "#",
+      label: "Facebook",
+      color: "hover:text-blue-400",
+    },
   ];
   return (
-    <footer className="bg-gradient-to-t from-black via-gray-900 to-gray-800 border-t border-white/10">      
+    <footer className="bg-gradient-to-t from-black via-gray-900 to-gray-800 border-t border-white/10">
       <div className="container mx-auto px-4 py-16">
         {/* Main Footer Content */}
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12">
@@ -57,8 +55,14 @@ const Footer = () => {
               viewport={{ once: true }}
             >
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                  <Target className="w-6 h-6 text-white" />
+                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                  <img
+                    src={"logo.png"}
+                    alt="Archery Club of Uva logo"
+                    className="w-10 h-10 p-1 rounded-full"
+                    loading="eager"
+                    fetchpriority="high"
+                  />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-white">Archery Club</h3>
@@ -66,7 +70,9 @@ const Footer = () => {
                 </div>
               </div>
               <p className="text-gray-300 leading-relaxed">
-                Empowering archers through precision, dedication, and excellence. Join our community and discover the noble art of archery.
+                Empowering archers through precision, dedication, and
+                excellence. Join our community and discover the noble art of
+                archery.
               </p>
             </motion.div>
 
@@ -80,7 +86,9 @@ const Footer = () => {
             >
               <div className="flex items-center space-x-3 text-gray-300">
                 <MapPin className="w-4 h-4 text-blue-400 flex-shrink-0" />
-                <span className="text-sm">Rotoruwa, Kabillawela North, Bandarawela</span>
+                <span className="text-sm">
+                  Rotoruwa, Kabillawela North, Bandarawela
+                </span>
               </div>
               <div className="flex items-center space-x-3 text-gray-300">
                 <Mail className="w-4 h-4 text-blue-400 flex-shrink-0" />
@@ -88,7 +96,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3 text-gray-300">
                 <Phone className="w-4 h-4 text-blue-400 flex-shrink-0" />
-                <span className="text-sm">+94 123 456 789</span>
+                <span className="text-sm">+94 71 811 8969</span>
               </div>
             </motion.div>
 
@@ -126,7 +134,10 @@ const Footer = () => {
               viewport={{ once: true }}
               className="space-y-4"
             >
-              <h4 className="text-lg font-semibold text-white">{section.title}</h4>              <ul className="space-y-3">
+              <h4 className="text-lg font-semibold text-white">
+                {section.title}
+              </h4>{" "}
+              <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.name}>
                     <a
@@ -152,7 +163,7 @@ const Footer = () => {
         >
           <div className="text-center md:text-left">
             <p className="text-gray-400 text-sm">
-              © 2024 Archery Club of Uva. All rights reserved.
+              © 2025 Archery Club of Uva. All rights reserved.
             </p>
             <p className="text-gray-500 text-xs mt-1">
               Designed with precision and passion for archery excellence.
@@ -170,7 +181,8 @@ const Footer = () => {
             </div>
           </button>
         </motion.div>
-      </div>    </footer>
+      </div>{" "}
+    </footer>
   );
 };
 

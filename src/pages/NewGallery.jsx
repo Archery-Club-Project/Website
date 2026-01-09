@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react";
+import SEO from "../components/SEO";
 
 const NewGallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -9,48 +10,104 @@ const NewGallery = () => {
   const images = [
     {
       id: 1,
-      src: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      title: 'Precision Training',
-      category: 'Training',
+      src: "/gallery/jnac2016.jpg",
+      title: "6th JNAC 2016",
+      category: "International Tournament",
     },
     {
       id: 2,
-      src: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      title: 'Championship Moment',
-      category: 'Competition',
+      src: "/gallery/singapore2013.jpg",
+      title: "Indor Archery Youth Cup 2013 - Singapore",
+      category: "International Tournament",
     },
     {
       id: 3,
-      src: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      title: 'Perfect Form',
-      category: 'Technique',
+      src: "/gallery/singapore2013_2.jpg",
+      title: "Flamming Arrows Outdoor Shoot 2013- Singapore",
+      category: "International Tournament",
     },
     {
       id: 4,
-      src: 'https://images.unsplash.com/photo-1519417688386-31394a01c4b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      title: 'Target Focus',
-      category: 'Training',
-    },
-    {
-      id: 5,
-      src: 'https://images.unsplash.com/photo-1511374322656-8face3d89ce1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      title: 'Victory Celebration',
-      category: 'Achievement',
+      src: "/gallery/cas1.jpg",
+      title: "CAS Tournament",
+      category: "Tournaments",
     },
     {
       id: 6,
-      src: 'https://images.unsplash.com/photo-1515474594679-6a12d48b0468?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      title: 'Team Spirit',
-      category: 'Community',
+      src: "/gallery/jnac2013.jpg",
+      title: "Junior National Archery Championship 2013",
+      category: "Tournaments",
+    },
+    {
+      id: 5,
+      src: "/gallery/comunity.jpg",
+      title: "Victory Celebration",
+      category: "Community",
+    },
+    {
+      id: 7,
+      src: "/gallery/moives.jpg",
+      title: "Moive Day",
+      category: "Community",
+    },
+    {
+      id: 8,
+      src: "/gallery/practice2.jpg",
+      title: "Team Spirit",
+      category: "Training",
+    },
+    {
+      id: 9,
+      src: "/gallery/practice1.jpg",
+      title: "Team Spirit",
+      category: "Training",
+    },
+    {
+      id: 10,
+      src: "/gallery/uvahessara-group.jpg",
+      title: "Uva Heesara Team",
+      category: "Uva Heesara 2025",
+    },
+    {
+      id: 11,
+      src: "/gallery/wayamba.jpg",
+      title: "Wayamba Archery Championship",
+      category: "Tournaments",
+    },
+    {
+      id: 12,
+      src: "/gallery/south1.jpg",
+      title: "South Asian Games 2019 - Nepal",
+      category: "Achievement",
+    },
+    {
+      id: 13,
+      src: "/gallery/youth-olympic.jpg",
+      title: "Youth Olympic 2018",
+      category: "Achievement",
+    },
+    {
+      id: 14,
+      src: "/gallery/moviesday2.jpg",
+      title: "Movie Day",
+      category: "Community",
     },
   ];
 
-  const categories = ['All', 'Training', 'Competition', 'Technique', 'Achievement', 'Community'];
-  const [activeCategory, setActiveCategory] = useState('All');
+  const categories = [
+    "All",
+    "Training",
+    "International Tournament",
+    "Tournaments",
+    "Achievement",
+    "Community",
+  ];
+  const [activeCategory, setActiveCategory] = useState("All");
 
-  const filteredImages = activeCategory === 'All' 
-    ? images 
-    : images.filter(img => img.category === activeCategory);
+  const filteredImages =
+    activeCategory === "All"
+      ? images
+      : images.filter((img) => img.category === activeCategory);
 
   const openModal = (image, index) => {
     setSelectedImage(image);
@@ -62,16 +119,22 @@ const NewGallery = () => {
   };
 
   const navigateImage = (direction) => {
-    const newIndex = direction === 'next' 
-      ? (currentIndex + 1) % filteredImages.length
-      : (currentIndex - 1 + filteredImages.length) % filteredImages.length;
-    
+    const newIndex =
+      direction === "next"
+        ? (currentIndex + 1) % filteredImages.length
+        : (currentIndex - 1 + filteredImages.length) % filteredImages.length;
+
     setCurrentIndex(newIndex);
     setSelectedImage(filteredImages[newIndex]);
   };
 
   return (
     <div className="container mx-auto px-4 py-16 max-w-7xl">
+      <SEO 
+        title="Gallery" 
+        description="Explore our gallery of archery events, competitions, and community moments."
+        url="/newgallery"
+      />
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -84,7 +147,8 @@ const NewGallery = () => {
           Our Gallery
         </h1>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Capturing moments of precision, dedication, and triumph in our archery journey.
+          Capturing moments of precision, dedication, and triumph in our archery
+          journey.
         </p>
       </motion.div>
 
@@ -102,8 +166,8 @@ const NewGallery = () => {
             onClick={() => setActiveCategory(category)}
             className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
               activeCategory === category
-                ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25'
-                : 'bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white border border-white/10'
+                ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25"
+                : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white border border-white/10"
             }`}
           >
             {category}
@@ -112,7 +176,7 @@ const NewGallery = () => {
       </motion.div>
 
       {/* Gallery Grid */}
-      <motion.div 
+      <motion.div
         layout
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
       >
@@ -136,11 +200,13 @@ const NewGallery = () => {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
-              
+
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 className="text-white font-bold text-lg mb-2">{image.title}</h3>
+                  <h3 className="text-white font-bold text-lg mb-2">
+                    {image.title}
+                  </h3>
                   <span className="inline-block px-3 py-1 bg-purple-500/80 text-white text-sm rounded-full">
                     {image.category}
                   </span>
@@ -176,17 +242,17 @@ const NewGallery = () => {
                 alt={selectedImage.title}
                 className="w-full h-full object-contain rounded-lg"
               />
-              
+
               {/* Navigation */}
               <button
-                onClick={() => navigateImage('prev')}
+                onClick={() => navigateImage("prev")}
                 className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/10 hover:bg-white/20 rounded-full p-3 transition-colors duration-200"
               >
                 <ChevronLeft className="w-6 h-6 text-white" />
               </button>
-              
+
               <button
-                onClick={() => navigateImage('next')}
+                onClick={() => navigateImage("next")}
                 className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/10 hover:bg-white/20 rounded-full p-3 transition-colors duration-200"
               >
                 <ChevronRight className="w-6 h-6 text-white" />
@@ -202,7 +268,9 @@ const NewGallery = () => {
 
               {/* Image info */}
               <div className="absolute bottom-4 left-4 right-4 bg-black/50 backdrop-blur-sm rounded-lg p-4">
-                <h3 className="text-white font-bold text-xl mb-2">{selectedImage.title}</h3>
+                <h3 className="text-white font-bold text-xl mb-2">
+                  {selectedImage.title}
+                </h3>
                 <span className="inline-block px-3 py-1 bg-purple-500/80 text-white text-sm rounded-full">
                   {selectedImage.category}
                 </span>
