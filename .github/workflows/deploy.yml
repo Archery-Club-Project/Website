@@ -1,8 +1,8 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [ new-ui ]
+  merge:
+    branches: [ main ]
 
 permissions:
   contents: read
