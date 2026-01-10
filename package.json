@@ -7,7 +7,7 @@
   "description": "Archery Club of Uva (Uva Archery) – promoting Sri Lankan archery through training, competitions and youth development.",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/copy-404.js",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "vite build",
