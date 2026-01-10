@@ -22,10 +22,10 @@ const Footer = () => {
     {
       title: "Quick Links",
       links: [
-        { name: "About Us", href: "#About" },
-        { name: "Our Achievements", href: "#Achievements" },
-        { name: "Gallery", href: "#Gallery" },
-        { name: "Contact Us", href: "#Contact" },
+        { name: "About Us", href: "/#About" },
+        { name: "Our Achievements", href: "/#Achievements" },
+        { name: "Gallery", href: "/#Gallery" },
+        { name: "Contact Us", href: "/#Contact" },
       ],
     },
     {

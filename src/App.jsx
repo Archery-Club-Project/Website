@@ -10,6 +10,7 @@ import Loader from "./components/loader/loader";
 import { useState, useEffect } from "react";
 import Achievement from "./components/achievements/Achievement";
 import DynamicBackground from "./components/DynamicBackground";
+import ScrollToTop from "./components/ScrollToTop";
 import {
   HeroBackground,
   AboutBackground,
@@ -70,9 +71,13 @@ function App() {
   }, []);
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen flex flex-col relative z-10">
         {isLoading ? (
-          <div className="fixed inset-0 flex items-center justify-center bg-black z-50" id="preloader">
+          <div
+            className="fixed inset-0 flex items-center justify-center bg-black z-50"
+            id="preloader"
+          >
             <div className="text-white text-center flex items-center justify-center flex-col">
               <Loader />
               <p className="text-lg mt-4">Loading amazing shots...</p>
