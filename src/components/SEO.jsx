@@ -1,17 +1,21 @@
-import { Helmet } from 'react-helmet-async';
-import PropTypes from 'prop-types';
+import { Helmet } from "react-helmet-async";
+import PropTypes from "prop-types";
 
 const SEO = ({ title, description, keywords, url, image }) => {
-  const siteTitle = 'Archery Club of Uva | Uva Archery Sri Lanka';
-  const siteDescription = 'Archery Club of Uva (Uva Archery) promotes Sri Lankan archery excellence through training, competitions, youth development and national representation in Sri Lanka.';
-  const siteKeywords = 'uva archery, archery, srilanka archery, uvaarchery, srilankan archery, sri lanka archery, uva';
-  const siteUrl = 'https://www.uvaarchery.lk/';
-  const siteImage = 'https://www.uvaarchery.lk/logo.png';
+  const siteTitle = "Archery Club of Uva | Uva Archery Sri Lanka";
+  const siteDescription =
+    "Archery Club of Uva (Uva Archery) promotes Sri Lankan archery excellence through training, competitions, youth development and national representation in Sri Lanka.";
+  const siteKeywords =
+    "uva archery, archery, srilanka archery, uvaarchery, srilankan archery, sri lanka archery, uva";
+  const siteUrl = "https://www.uvaarchery.lk/";
+  const siteImage = "https://www.uvaarchery.lk/favicon.ico";
 
   const currentTitle = title ? `${title} | Archery Club of Uva` : siteTitle;
   const currentDescription = description || siteDescription;
   const currentKeywords = keywords || siteKeywords;
-  const currentUrl = url ? `${siteUrl}${url}` : siteUrl;
+  const currentUrl = url
+    ? `${siteUrl}${url.startsWith("/") ? url.slice(1) : url}`
+    : siteUrl;
   const currentImage = image ? `${siteUrl}${image}` : siteImage;
 
   return (
